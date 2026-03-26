@@ -1,0 +1,211 @@
+.page-shell {
+  min-height: 100vh;
+  background: #07111f;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-screen {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scene-shell {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.scene-frame {
+  position: relative;
+  width: min(100vw, 1728px);
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #8fd3ff 0%, #dff6ff 100%);
+}
+
+.scene-layer {
+  position: absolute;
+  display: block;
+  height: auto;
+  max-width: none;
+  will-change: transform, opacity;
+  pointer-events: none;
+  user-select: none;
+  transition:
+    transform 0.25s linear,
+    opacity 0.35s ease;
+}
+
+.hero-copy {
+  position: absolute;
+  z-index: 50;
+  text-align: center;
+}
+
+.hero-copy.center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-copy.bottom {
+  left: 50%;
+  bottom: 72px;
+  transform: translateX(-50%);
+}
+
+.hero-copy h1,
+.hero-copy h2 {
+  margin: 0 0 20px;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  line-height: 0.95;
+}
+
+.hero-copy h2 {
+  animation: fadeUpText 0.8s ease forwards;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-copy button {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease,
+    color 0.22s ease;
+}
+
+.hero-copy button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+.hero-copy button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.hero-copy .ghost {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* overlay animation */
+.animate-pop {
+  animation: popIn 0.7s ease forwards;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -42%) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes fadeUpText {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.08em;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 0;
+    transform: translateY(0);
+  }
+}
+
+/* idle animation */
+.sun {
+  animation: glowSun 5s ease-in-out infinite alternate;
+}
+
+/* .cloud1,
+.cloud2,
+.cloud3,
+.cloud4 {
+  animation: floatCloud 6s ease-in-out infinite alternate;
+}
+
+.cloud2 {
+  animation-delay: 0.8s;
+}
+
+.cloud3 {
+  animation-delay: 1.5s;
+}
+
+.cloud4 {
+  animation-delay: 2.1s;
+} */
+
+@keyframes glowSun {
+  0% {
+    filter: drop-shadow(0 0 0 rgba(255, 245, 180, 0.15));
+  }
+  100% {
+    filter: drop-shadow(0 0 18px rgba(255, 245, 180, 0.45));
+  }
+}
+
+/* @keyframes floatCloud {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -10px;
+  }
+} */
+
+@media (max-width: 768px) {
+  .hero-copy.bottom {
+    bottom: 32px;
+    width: calc(100% - 32px);
+  }
+
+  .hero-copy h1,
+  .hero-copy h2 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .button-group {
+    gap: 10px;
+  }
+
+  .hero-copy button {
+    width: 100%;
+    max-width: 220px;
+  }
+}
